@@ -104,9 +104,13 @@ namespace Lemon_resource_monitor
             serial = new SerialController();
             hwInfo = new HardwareInfo();
 
+            // Show form if no device is selected
+            if (settings.Port != "")
+            {
+                this.ShowInTaskbar = false;
+                HideForm();
+            }
             notifyIcon1.Visible = true;
-            this.ShowInTaskbar = false;
-            HideForm();
 
             serial.serialConnected += serial_connected;
             serial.serialDisconnected += serial_disconnected;
@@ -115,7 +119,6 @@ namespace Lemon_resource_monitor
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
             serial_portsChanged(serial.CheckAvailPortInfoMan());
             LoadSettingsForm();
             CheckAutoStart();
