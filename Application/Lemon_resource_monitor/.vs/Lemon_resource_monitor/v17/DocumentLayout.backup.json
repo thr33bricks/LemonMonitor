@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\lemon_resource_monitor\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|e:\\programming\\c#\\arduino_school\\lemonmonitor\\application\\lemon_resource_monitor\\lemon_resource_monitor\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|solutionrelative:lemon_resource_monitor\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\lemon_resource_monitor\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|solutionrelative:lemon_resource_monitor\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\lemon_resource_monitor\\frmabout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|solutionrelative:lemon_resource_monitor\\frmabout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|e:\\programming\\c#\\arduino_school\\lemonmonitor\\application\\lemon_resource_monitor\\lemon_resource_monitor\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|solutionrelative:lemon_resource_monitor\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,15 +26,14 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "frmAbout.cs [Design]",
               "DocumentMoniker": "E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\frmAbout.cs",
               "RelativeDocumentMoniker": "Lemon_resource_monitor\\frmAbout.cs",
               "ToolTip": "E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\frmAbout.cs [Design]",
               "RelativeToolTip": "Lemon_resource_monitor\\frmAbout.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-10T22:37:31.397Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-12-10T22:37:31.397Z"
             },
             {
               "$type": "Document",
@@ -44,14 +43,14 @@
               "RelativeDocumentMoniker": "Lemon_resource_monitor\\Form1.cs",
               "ToolTip": "E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\Form1.cs",
               "RelativeToolTip": "Lemon_resource_monitor\\Form1.cs",
-              "ViewState": "AgIAAGQAAAAAAAAAAAAmwGkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAALgBAAAAAAAAAAAUwPkBAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-09T18:59:07.105Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\Form1.cs",
               "RelativeDocumentMoniker": "Lemon_resource_monitor\\Form1.cs",

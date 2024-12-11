@@ -456,9 +456,13 @@ namespace Lemon_resource_monitor
 
             settings.Port = selItem;
             settings.SaveSettings();
+
+            if(serial.Connected)
+                serial.Disconnect();
         }
         #endregion
 
+        #region SystemTray
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ExitApp();
@@ -499,5 +503,6 @@ namespace Lemon_resource_monitor
             notifyIcon1.Dispose();
             Environment.Exit(0);
         }
+        #endregion
     }
 }
