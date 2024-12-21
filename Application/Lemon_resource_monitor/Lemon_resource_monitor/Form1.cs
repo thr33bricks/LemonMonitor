@@ -100,8 +100,8 @@ namespace Lemon_resource_monitor
 
         public Form1()
         {
-            CloseIfAnotherInstanceRunning();
             InitializeComponent();
+            CloseIfAnotherInstanceRunning();
 
             settings = new Settings(settingsFilePath);
             serial = new SerialController();

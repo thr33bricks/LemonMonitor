@@ -145,7 +145,7 @@ namespace hardware_info_test
                                 this.gpuTemp = (float)sensor.Value;
                             }
                             else if (sensor.SensorType == 
-                                SensorType.Load && sensor.Name == "D3D 3D")
+                                SensorType.Load && sensor.Name == "GPU Core")
                             {
                                 this.gpuLoad = (float)sensor.Value;
                             }
