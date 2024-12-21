@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using Microsoft.Win32.TaskScheduler;
 using hardware_info_test;
 using Microsoft.Win32;
+using System.Diagnostics;
 
 namespace Lemon_resource_monitor
 {
@@ -21,6 +22,7 @@ namespace Lemon_resource_monitor
         Settings settings;
         SerialController serial;
         HardwareInfo hwInfo;
+        Mutex mutex;
 
         #region Movable
         //====================================================================================
@@ -98,6 +100,7 @@ namespace Lemon_resource_monitor
 
         public Form1()
         {
+            CloseIfAnotherInstanceRunning();
             InitializeComponent();
 
             settings = new Settings(settingsFilePath);
@@ -286,6 +289,17 @@ namespace Lemon_resource_monitor
                 }
                 else if(task != null && !settings.AutoStart)
                     taskService.RootFolder.DeleteTask(appName);
+            }
+        }
+
+        private void CloseIfAnotherInstanceRunning()
+        {
+            bool isNewInstance;
+            mutex = new Mutex(true, "Lemon_resource_monitor", out isNewInstance);
+
+            if (!isNewInstance)
+            {
+                ExitApp();
             }
         }
         #endregion
