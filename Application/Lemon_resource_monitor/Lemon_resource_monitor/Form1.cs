@@ -379,7 +379,7 @@ namespace Lemon_resource_monitor
                 List<string> availPorts = cbPorts.Items.Cast<string>().ToList();
                 foreach (string port in availPorts)
                 {
-                    if (port.Contains("CH340"))
+                    if (port.Contains("CH340") || port.Contains("Arduino"))
                     {
                         MethodInvoker mi1 = delegate ()
                         {cbPorts.SelectedItem = port;};

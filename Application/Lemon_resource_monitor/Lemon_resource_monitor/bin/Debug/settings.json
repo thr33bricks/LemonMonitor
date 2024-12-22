@@ -2,5 +2,5 @@
   "AutoStart": true,
   "Background": true,
   "AutoPort": true,
-  "Port": "USB-SERIAL CH340 (COM5)"
+  "Port": "Arduino Uno (COM9)"
 }
