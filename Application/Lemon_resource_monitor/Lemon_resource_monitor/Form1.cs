@@ -108,7 +108,7 @@ namespace Lemon_resource_monitor
             hwInfo = new HardwareInfo();
 
             // Show form if no device is selected
-            if (settings.Port != "")
+            if (!String.IsNullOrEmpty(settings.Port))
             {
                 this.ShowInTaskbar = false;
                 HideForm();
@@ -330,7 +330,7 @@ namespace Lemon_resource_monitor
                 {
                     if(!cbAutoPort.Checked)
                         cbPorts.Enabled = true;
-                    if(settings.Port != "")
+                    if(!String.IsNullOrEmpty(settings.Port))
                         cbPorts.SelectedItem = settings.Port;
                 }
             };
@@ -393,7 +393,7 @@ namespace Lemon_resource_monitor
 
         private void TryConnect()
         {
-            if(!serial.Connected)
+            if(!serial.Connected && !String.IsNullOrEmpty(settings.Port))
                 serial.Connect(settings.Port);
         }
 
@@ -455,7 +455,7 @@ namespace Lemon_resource_monitor
             if (cbAutoPort.Checked)
                 cbPorts.Enabled = false;
 
-            if (settings.Port != "")
+            if (!String.IsNullOrEmpty(settings.Port))
                 cbPorts.SelectedItem = settings.Port;
 
             settings.AutoPort = cbAutoPort.Checked;

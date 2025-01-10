@@ -148,7 +148,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(137, 16);
             this.lblVersion.TabIndex = 43;
-            this.lblVersion.Text = "Lemon monitor v1.3";
+            this.lblVersion.Text = "Lemon monitor v1.4";
             this.lblVersion.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblVersion_MouseMove);
             // 
             // lblName
@@ -183,9 +183,9 @@
             this.lblCopyright.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCopyright.Location = new System.Drawing.Point(13, 113);
             this.lblCopyright.Name = "lblCopyright";
-            this.lblCopyright.Size = new System.Drawing.Size(123, 14);
+            this.lblCopyright.Size = new System.Drawing.Size(110, 14);
             this.lblCopyright.TabIndex = 52;
-            this.lblCopyright.Text = "© December, 2024";
+            this.lblCopyright.Text = "© January, 2025";
             this.lblCopyright.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblCopyright_MouseMove);
             // 
             // pbFacebook

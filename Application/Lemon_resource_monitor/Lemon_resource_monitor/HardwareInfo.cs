@@ -4,6 +4,21 @@ using System.Management;
 
 namespace hardware_info_test
 {
+    public class UpdateVisitor : IVisitor
+    {
+        public void VisitComputer(IComputer computer)
+        {
+            computer.Traverse(this);
+        }
+        public void VisitHardware(IHardware hardware)
+        {
+            hardware.Update();
+            foreach (IHardware subHardware in hardware.SubHardware) subHardware.Accept(this);
+        }
+        public void VisitSensor(ISensor sensor) { }
+        public void VisitParameter(IParameter parameter) { }
+    }
+
     public class HardwareInfo
     {
         // RAM
@@ -102,6 +117,7 @@ namespace hardware_info_test
         private void getCpuGpuUsage()
         {
             this.computer.Open();
+            this.computer.Accept(new UpdateVisitor());
 
             foreach (var hardware in computer.Hardware)
             {
