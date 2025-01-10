@@ -165,6 +165,11 @@ namespace hardware_info_test
                             {
                                 this.gpuLoad = (float)sensor.Value;
                             }
+                            else if (sensor.SensorType ==
+                                SensorType.Load && sensor.Name == "D3D 3D")
+                            {
+                                this.gpuLoad = (float)sensor.Value;
+                            }
 
                             if (sensor.SensorType == 
                                 SensorType.SmallData && 
