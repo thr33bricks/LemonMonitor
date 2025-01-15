@@ -277,8 +277,12 @@ namespace Lemon_resource_monitor
             using (TaskService taskService = new TaskService())
             {
                 Task task = taskService.GetTask(appName);
-                if(task == null && settings.AutoStart)
+                if(settings.AutoStart)
                 {
+                    // Delete the task first if available
+                    if(task != null)
+                        taskService.RootFolder.DeleteTask(appName);
+
                     // Add task to task scheduler
                     TaskDefinition taskDefinition = taskService.NewTask();
                     taskDefinition.RegistrationInfo.Description = "Start " + appName + " at login";
@@ -513,6 +517,7 @@ namespace Lemon_resource_monitor
 
         private void ExitApp()
         {
+            hwInfo.close();
             notifyIcon1.Visible = false;
             notifyIcon1.Dispose();
             Environment.Exit(0);

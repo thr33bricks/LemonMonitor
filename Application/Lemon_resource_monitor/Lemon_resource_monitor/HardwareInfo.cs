@@ -1,6 +1,8 @@
 ﻿using LibreHardwareMonitor.Hardware;
 using System;
+using System.Collections.Generic;
 using System.Management;
+using System.Windows.Forms;
 
 namespace hardware_info_test
 {
@@ -41,6 +43,9 @@ namespace hardware_info_test
         private bool amdUsed = false;
 
         private Computer computer;
+        private List<ISensor> sensors = new List<ISensor>();
+        private Dictionary<IHardware, int> lastUpdate = new Dictionary<IHardware, int>();
+
         public HardwareInfo()
         {
             Computer computer = new Computer(){
@@ -48,6 +53,38 @@ namespace hardware_info_test
                 //IsMemoryEnabled = true
             };
             this.computer = computer;
+            computer.Open();
+
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            HashSet<SensorType> enabledSensors = new HashSet<SensorType>();
+            enabledSensors.Add(SensorType.Temperature);
+            enabledSensors.Add(SensorType.Load);
+            enabledSensors.Add(SensorType.SmallData);
+
+            computer.Accept(new UpdateVisitor());
+            computer.Accept(new SensorVisitor(sensor =>
+            {
+                if (enabledSensors.Contains(sensor.SensorType))
+                    sensors.Add(sensor);
+            }));
+        }
+
+        public void close()
+        {
+            computer.Close();
+        }
+
+        public void reload()
+        {
+            sensors.Clear();
+            lastUpdate.Clear();
+            computer.Reset();
+
+            Initialize();
         }
 
         public void refresh()
@@ -56,18 +93,25 @@ namespace hardware_info_test
             getCpuGpuUsage();
         }
 
-        public void print()
+        private float sensorValue(ISensor sensor)
         {
-            printRamUsage();
-            Console.WriteLine();
-            printCpuUsage();
-            Console.WriteLine();
-            printGpuUsage();
+            if (sensor == null)
+                return 0f;
+
+            // Update sensors hardware if last update was over 100ms ago.
+            // This most likely results in one update per hardware in a polling cycle as long as polling interval is greater.
+            if (!lastUpdate.TryGetValue(sensor.Hardware, out int last) || (Environment.TickCount - last) > 100)
+            {
+                sensor.Hardware.Update();
+                lastUpdate[sensor.Hardware] = Environment.TickCount;
+            }
+
+            return sensor.Value ?? 0f;
         }
-      
+
         private void getRamUsage()
         {
-            using (var searcher = 
+            using (var searcher =
                 new ManagementObjectSearcher(
                     "SELECT TotalVisibleMemorySize, " +
                     "FreePhysicalMemory FROM Win32_OperatingSystem"))
@@ -85,10 +129,78 @@ namespace hardware_info_test
             }
         }
 
+        private void getCpuGpuUsage()
+        {
+            foreach (var s in sensors)
+            {
+                if (s.Hardware.HardwareType == HardwareType.Cpu)
+                {
+                    this.cpuName = s.Hardware.Name;
+
+                    if (s.SensorType == 
+                        SensorType.Temperature && 
+                        s.Name == "Core Average")
+                    {
+                        this.cpuTemp = (float)sensorValue(s);
+                    }
+                    else if (s.SensorType == 
+                        SensorType.Load && s.Name == "CPU Total")
+                    {
+                        this.cpuLoad = (float)sensorValue(s);
+                    }
+                }
+                else if(s.Hardware.HardwareType == HardwareType.GpuNvidia ||
+                        s.Hardware.HardwareType == HardwareType.GpuAmd ||
+                        s.Hardware.HardwareType == HardwareType.GpuIntel)
+                {
+                    if(s.Hardware.HardwareType == HardwareType.GpuNvidia || 
+                       !nvidiaUsed &&
+                            s.Hardware.HardwareType == HardwareType.GpuAmd ||
+                       !nvidiaUsed && !amdUsed &&
+                            s.Hardware.HardwareType == HardwareType.GpuIntel)
+                    {
+                        this.gpuName = s.Hardware.Name;
+
+                        if (s.SensorType == SensorType.Temperature &&
+                            s.Name == "GPU Core")
+                        {
+                            this.gpuTemp = (float)sensorValue(s);
+                        }
+                        else if (s.SensorType == SensorType.Load && 
+                            s.Name == "GPU Core")
+                        {
+                            this.gpuLoad = (float)sensorValue(s);
+                        }
+                        else if (s.SensorType == SensorType.Load &&
+                            s.Name == "D3D 3D")
+                        {
+                            this.gpuLoad = (float)sensorValue(s);
+                        }
+
+                        if (s.SensorType == SensorType.SmallData &&
+                            s.Name == "GPU Memory Total")
+                        {
+                            this.gpuTotalVram = (ulong)sensorValue(s);
+                        }
+                        else if (s.SensorType == SensorType.SmallData &&
+                            s.Name == "GPU Memory Free")
+                        {
+                            this.gpuAvailVram = (ulong)sensorValue(s);
+                        }
+                    }
+
+                    if (s.Hardware.HardwareType == HardwareType.GpuNvidia)
+                        this.nvidiaUsed = true;
+                    else if (s.Hardware.HardwareType == HardwareType.GpuAmd)
+                        this.amdUsed = true;
+                }
+            }
+        }
+
         private void printRamUsage()
         {
             ulong usedMemory = this.totalMemory - this.availableMemory;
-            double ramUsagePercentage = 
+            double ramUsagePercentage =
                 (double)usedMemory / this.totalMemory * 100;
 
             Console.WriteLine(
@@ -114,86 +226,13 @@ namespace hardware_info_test
             Console.WriteLine($"GPU Available VRAM: {gpuAvailVram} MB");
         }
 
-        private void getCpuGpuUsage()
+        public void print()
         {
-            this.computer.Open();
-            this.computer.Accept(new UpdateVisitor());
-
-            foreach (var hardware in computer.Hardware)
-            {
-                if (hardware.HardwareType == HardwareType.Cpu)
-                {
-                    this.cpuName = hardware.Name;
-
-                    foreach (var sensor in hardware.Sensors)
-                    {
-                        if (sensor.SensorType == 
-                            SensorType.Temperature && 
-                            sensor.Name == "Core Average")
-                        {
-                            this.cpuTemp = (float)sensor.Value;
-                        }
-                        else if (sensor.SensorType == 
-                            SensorType.Load && sensor.Name == "CPU Total")
-                        {
-                            this.cpuLoad = (float)sensor.Value;
-                        }
-                    }
-                }
-                else if(hardware.HardwareType == HardwareType.GpuNvidia ||
-                        hardware.HardwareType == HardwareType.GpuAmd ||
-                        hardware.HardwareType == HardwareType.GpuIntel)
-                {
-                    if(hardware.HardwareType == HardwareType.GpuNvidia || 
-                       !nvidiaUsed && 
-                            hardware.HardwareType == HardwareType.GpuAmd ||
-                       !nvidiaUsed && !amdUsed && 
-                            hardware.HardwareType == HardwareType.GpuIntel)
-                    {
-                        this.gpuName = hardware.Name;
-
-                        foreach (var sensor in hardware.Sensors)
-                        {
-                            if (sensor.SensorType == 
-                                SensorType.Temperature && 
-                                sensor.Name == "GPU Core")
-                            {
-                                this.gpuTemp = (float)sensor.Value;
-                            }
-                            else if (sensor.SensorType == 
-                                SensorType.Load && sensor.Name == "GPU Core")
-                            {
-                                this.gpuLoad = (float)sensor.Value;
-                            }
-                            else if (sensor.SensorType ==
-                                SensorType.Load && sensor.Name == "D3D 3D")
-                            {
-                                this.gpuLoad = (float)sensor.Value;
-                            }
-
-                            if (sensor.SensorType == 
-                                SensorType.SmallData && 
-                                sensor.Name == "GPU Memory Total")
-                            {
-                                this.gpuTotalVram = (ulong)sensor.Value;
-                            }
-                            else if (sensor.SensorType == 
-                                SensorType.SmallData && 
-                                sensor.Name == "GPU Memory Free")
-                            {
-                                this.gpuAvailVram = (ulong)sensor.Value;
-                            }
-                        }
-                    }
-
-                    if (hardware.HardwareType == HardwareType.GpuNvidia)
-                        this.nvidiaUsed = true;
-                    else if (hardware.HardwareType == HardwareType.GpuAmd)
-                        this.amdUsed = true;
-                }
-            }
-
-            this.computer.Close();
+            printRamUsage();
+            Console.WriteLine();
+            printCpuUsage();
+            Console.WriteLine();
+            printGpuUsage();
         }
     }
 }

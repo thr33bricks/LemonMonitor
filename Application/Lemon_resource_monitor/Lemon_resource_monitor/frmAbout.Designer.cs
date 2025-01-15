@@ -148,7 +148,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(137, 16);
             this.lblVersion.TabIndex = 43;
-            this.lblVersion.Text = "Lemon monitor v1.4";
+            this.lblVersion.Text = "Lemon monitor v1.5";
             this.lblVersion.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblVersion_MouseMove);
             // 
             // lblName
