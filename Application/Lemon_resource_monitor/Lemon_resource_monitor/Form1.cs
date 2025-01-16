@@ -523,7 +523,9 @@ namespace Lemon_resource_monitor
 
         private void ExitApp()
         {
-            hwInfo.close();
+            try{ hwInfo.close(); }
+            catch { }
+            
             notifyIcon1.Visible = false;
             notifyIcon1.Dispose();
             Environment.Exit(0);

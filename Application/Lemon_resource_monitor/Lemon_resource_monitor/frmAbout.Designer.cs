@@ -146,9 +146,9 @@
             this.lblVersion.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVersion.Location = new System.Drawing.Point(13, 17);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(137, 16);
+            this.lblVersion.Size = new System.Drawing.Size(150, 16);
             this.lblVersion.TabIndex = 43;
-            this.lblVersion.Text = "Lemon monitor v1.5";
+            this.lblVersion.Text = "Lemon monitor v1.5.1";
             this.lblVersion.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblVersion_MouseMove);
             // 
             // lblName
