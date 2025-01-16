@@ -289,6 +289,12 @@ namespace Lemon_resource_monitor
                     taskDefinition.Principal.RunLevel = TaskRunLevel.Highest; // Runs with admin privileges
                     taskDefinition.Triggers.Add(new LogonTrigger());
                     taskDefinition.Actions.Add(new ExecAction(Application.ExecutablePath, null, null));
+
+                    taskDefinition.Settings.DisallowStartIfOnBatteries = false;
+                    taskDefinition.Settings.StopIfGoingOnBatteries = false;
+                    taskDefinition.Settings.AllowHardTerminate = false;
+                    taskDefinition.Settings.StartWhenAvailable = true;
+
                     taskService.RootFolder.RegisterTaskDefinition(appName, taskDefinition);
                 }
                 else if(task != null && !settings.AutoStart)
