@@ -1,6 +1,6 @@
 # Build results
-**/[Bb]in/
-**/[Oo]bj/
+bin/
+obj/
 
 # User-specific files
 *.user
@@ -85,8 +85,8 @@ Thumbs.db
 secrets.json
 
 # Windows Store apps
-AppPackages/
-BundleArtifacts/
+**/AppPackages/
+**/BundleArtifacts/
 
 # IIS Express
 /.vs/config/applicationhost.config
