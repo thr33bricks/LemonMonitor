@@ -37,6 +37,14 @@
             this.form_mini = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pnlMain = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbDividers = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.rbScrolling = new System.Windows.Forms.RadioButton();
+            this.tbRight = new System.Windows.Forms.TextBox();
+            this.rbSwitch = new System.Windows.Forms.RadioButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbLeft = new System.Windows.Forms.TextBox();
             this.cbBackground = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cbAutoPort = new System.Windows.Forms.CheckBox();
@@ -45,20 +53,21 @@
             this.btnAboutIn = new System.Windows.Forms.Panel();
             this.lblBtnAbout = new System.Windows.Forms.Label();
             this.btnAboutOut = new System.Windows.Forms.Panel();
-            this.pbFlag = new System.Windows.Forms.PictureBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pbFlag = new System.Windows.Forms.PictureBox();
             this.panelUpper.SuspendLayout();
             this.formClose.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClose)).BeginInit();
             this.form_mini.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.pnlMain.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.btnAboutIn.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbFlag)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFlag)).BeginInit();
             this.SuspendLayout();
             // 
             // panelUpper
@@ -71,7 +80,7 @@
             this.panelUpper.Controls.Add(this.form_mini);
             this.panelUpper.Location = new System.Drawing.Point(-1, 0);
             this.panelUpper.Name = "panelUpper";
-            this.panelUpper.Size = new System.Drawing.Size(403, 22);
+            this.panelUpper.Size = new System.Drawing.Size(466, 22);
             this.panelUpper.TabIndex = 41;
             this.panelUpper.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelUpper_MouseMove);
             // 
@@ -81,7 +90,7 @@
             this.lblFormHeading.AutoSize = true;
             this.lblFormHeading.Font = new System.Drawing.Font("Lucida Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFormHeading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(210)))), ((int)(((byte)(195)))));
-            this.lblFormHeading.Location = new System.Drawing.Point(153, 5);
+            this.lblFormHeading.Location = new System.Drawing.Point(185, 5);
             this.lblFormHeading.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblFormHeading.Name = "lblFormHeading";
             this.lblFormHeading.Size = new System.Drawing.Size(87, 14);
@@ -94,7 +103,7 @@
             this.formClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.formClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
             this.formClose.Controls.Add(this.pbClose);
-            this.formClose.Location = new System.Drawing.Point(375, 0);
+            this.formClose.Location = new System.Drawing.Point(438, 0);
             this.formClose.Name = "formClose";
             this.formClose.Size = new System.Drawing.Size(28, 22);
             this.formClose.TabIndex = 5;
@@ -120,7 +129,7 @@
             this.form_mini.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.form_mini.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
             this.form_mini.Controls.Add(this.pictureBox2);
-            this.form_mini.Location = new System.Drawing.Point(348, 0);
+            this.form_mini.Location = new System.Drawing.Point(411, 0);
             this.form_mini.Name = "form_mini";
             this.form_mini.Size = new System.Drawing.Size(28, 22);
             this.form_mini.TabIndex = 2;
@@ -150,7 +159,8 @@
             this.pnlMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(224)))), ((int)(((byte)(228)))));
+            this.pnlMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.pnlMain.Controls.Add(this.groupBox1);
             this.pnlMain.Controls.Add(this.cbBackground);
             this.pnlMain.Controls.Add(this.label1);
             this.pnlMain.Controls.Add(this.cbAutoPort);
@@ -161,11 +171,97 @@
             this.pnlMain.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlMain.Location = new System.Drawing.Point(2, 22);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(398, 176);
+            this.pnlMain.Size = new System.Drawing.Size(461, 271);
             this.pnlMain.TabIndex = 42;
             this.pnlMain.Click += new System.EventHandler(this.pnlMain_Click);
             this.pnlMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlMain_MouseMove);
             this.pnlMain.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.pnlMain_PreviewKeyDown);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.groupBox1.Controls.Add(this.cbDividers);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.rbScrolling);
+            this.groupBox1.Controls.Add(this.tbRight);
+            this.groupBox1.Controls.Add(this.rbSwitch);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.tbLeft);
+            this.groupBox1.Location = new System.Drawing.Point(12, 146);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(428, 110);
+            this.groupBox1.TabIndex = 100;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Device settings";
+            this.groupBox1.UseCompatibleTextRendering = true;
+            // 
+            // cbDividers
+            // 
+            this.cbDividers.AutoSize = true;
+            this.cbDividers.Location = new System.Drawing.Point(21, 24);
+            this.cbDividers.Name = "cbDividers";
+            this.cbDividers.Size = new System.Drawing.Size(77, 19);
+            this.cbDividers.TabIndex = 93;
+            this.cbDividers.Text = "Dividers";
+            this.cbDividers.UseVisualStyleBackColor = true;
+            this.cbDividers.CheckedChanged += new System.EventHandler(this.cbDividers_CheckedChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(217, 77);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(86, 15);
+            this.label3.TabIndex = 99;
+            this.label3.Text = "Hotkey right";
+            // 
+            // rbScrolling
+            // 
+            this.rbScrolling.AutoSize = true;
+            this.rbScrolling.Checked = true;
+            this.rbScrolling.Location = new System.Drawing.Point(21, 47);
+            this.rbScrolling.Name = "rbScrolling";
+            this.rbScrolling.Size = new System.Drawing.Size(79, 19);
+            this.rbScrolling.TabIndex = 94;
+            this.rbScrolling.TabStop = true;
+            this.rbScrolling.Text = "Scrolling";
+            this.rbScrolling.UseVisualStyleBackColor = true;
+            this.rbScrolling.CheckedChanged += new System.EventHandler(this.rbScrolling_CheckedChanged);
+            // 
+            // tbRight
+            // 
+            this.tbRight.Location = new System.Drawing.Point(309, 74);
+            this.tbRight.Name = "tbRight";
+            this.tbRight.Size = new System.Drawing.Size(106, 23);
+            this.tbRight.TabIndex = 98;
+            this.tbRight.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbRight_KeyDown);
+            // 
+            // rbSwitch
+            // 
+            this.rbSwitch.AutoSize = true;
+            this.rbSwitch.Location = new System.Drawing.Point(21, 72);
+            this.rbSwitch.Name = "rbSwitch";
+            this.rbSwitch.Size = new System.Drawing.Size(109, 19);
+            this.rbSwitch.TabIndex = 95;
+            this.rbSwitch.Text = "Switch pages";
+            this.rbSwitch.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(217, 44);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(77, 15);
+            this.label2.TabIndex = 97;
+            this.label2.Text = "Hotkey left";
+            // 
+            // tbLeft
+            // 
+            this.tbLeft.Location = new System.Drawing.Point(309, 41);
+            this.tbLeft.Name = "tbLeft";
+            this.tbLeft.Size = new System.Drawing.Size(106, 23);
+            this.tbLeft.TabIndex = 96;
+            this.tbLeft.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbLeft_KeyDown);
             // 
             // cbBackground
             // 
@@ -261,14 +357,6 @@
             this.btnAboutOut.MouseEnter += new System.EventHandler(this.btnAboutOut_MouseEnter);
             this.btnAboutOut.MouseLeave += new System.EventHandler(this.btnAboutOut_MouseLeave);
             // 
-            // pbFlag
-            // 
-            this.pbFlag.Location = new System.Drawing.Point(0, 0);
-            this.pbFlag.Name = "pbFlag";
-            this.pbFlag.Size = new System.Drawing.Size(100, 50);
-            this.pbFlag.TabIndex = 0;
-            this.pbFlag.TabStop = false;
-            // 
             // notifyIcon1
             // 
             this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
@@ -299,12 +387,20 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // pbFlag
+            // 
+            this.pbFlag.Location = new System.Drawing.Point(0, 0);
+            this.pbFlag.Name = "pbFlag";
+            this.pbFlag.Size = new System.Drawing.Size(100, 50);
+            this.pbFlag.TabIndex = 0;
+            this.pbFlag.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.ClientSize = new System.Drawing.Size(402, 200);
+            this.ClientSize = new System.Drawing.Size(465, 295);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.panelUpper);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -314,6 +410,7 @@
             this.Text = "Lemon monitor";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.panelUpper.ResumeLayout(false);
@@ -324,9 +421,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.pnlMain.ResumeLayout(false);
             this.pnlMain.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.btnAboutIn.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbFlag)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbFlag)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -352,6 +451,14 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.CheckBox cbDividers;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tbLeft;
+        private System.Windows.Forms.RadioButton rbSwitch;
+        private System.Windows.Forms.RadioButton rbScrolling;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tbRight;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 

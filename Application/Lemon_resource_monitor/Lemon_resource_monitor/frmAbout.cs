@@ -191,5 +191,17 @@ namespace Lemon_resource_monitor
             pbFacebook.Image = Properties.Resources.fb_blue;
         }
         #endregion
+
+        #region credits
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://www.icons8.com/");
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://files.yourdan.uk/api/public/dl/2Nsj4DnO?inline=true");
+        }
+        #endregion
     }
 }

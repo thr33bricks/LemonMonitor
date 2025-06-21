@@ -10,19 +10,28 @@ using Microsoft.Win32.TaskScheduler;
 using hardware_info_test;
 using Microsoft.Win32;
 using System.Diagnostics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Gma.System.MouseKeyHook;
+using System.Collections;
 
 namespace Lemon_resource_monitor
 {
     public partial class Form1 : Form
     {
-        int updateInterval = 1; // in seconds
-        int packetCounter = 9; 
+        int updateInterval = 200; // in ms
         string settingsFilePath = "settings.json"; // realative to the .exe file
         string appName = "LemonMonitor";
+        string autoPort = "";
+        bool leftAction = false;
+        bool rightAction = false;
+        bool firstConnect = true;
         Settings settings;
         SerialController serial;
         HardwareInfo hwInfo;
+        FPSInfo fpsInfo;
         Mutex mutex;
+
+        IKeyboardMouseEvents globalHook;
 
         #region Movable
         //====================================================================================
@@ -98,6 +107,7 @@ namespace Lemon_resource_monitor
         }
         #endregion
 
+        #region Form
         public Form1()
         {
             InitializeComponent();
@@ -106,6 +116,7 @@ namespace Lemon_resource_monitor
             settings = new Settings(settingsFilePath);
             serial = new SerialController();
             hwInfo = new HardwareInfo();
+            fpsInfo = new FPSInfo();
 
             // Show form if no device is selected
             if (!String.IsNullOrEmpty(settings.Port))
@@ -122,11 +133,21 @@ namespace Lemon_resource_monitor
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            globalHook = Hook.GlobalEvents();
+            globalHook.KeyDown += GlobalHook_KeyDown;
+
             serial_portsChanged(serial.CheckAvailPortInfoMan());
             LoadSettingsForm();
             CheckAutoStart();
             StartMainThread();
         }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            globalHook.KeyDown -= GlobalHook_KeyDown;
+            globalHook.Dispose();
+        }
+        #endregion
 
         #region Title bar buttons
         private void form_mini_MouseEnter(object sender, EventArgs e)
@@ -268,7 +289,23 @@ namespace Lemon_resource_monitor
             cbBackground.Checked = settings.Background;
             cbAutoPort.Checked = settings.AutoPort;
 
-            if(!settings.AutoPort)
+            rbScrolling.Checked = settings.Scrolling;
+            rbSwitch.Checked = !settings.Scrolling;
+            cbDividers.Checked = settings.Dividers;
+
+            List<string> keysLeft = new List<string>();
+            if (settings.KeyLeft1 != "")
+                keysLeft.Add(settings.KeyLeft1);
+            keysLeft.Add(settings.KeyLeft2.ToString());
+            tbLeft.Text = string.Join("+", keysLeft).ToString();
+
+            List<string> keysRight = new List<string>();
+            if (settings.KeyRight1 != "")
+                keysRight.Add(settings.KeyRight1);
+            keysRight.Add(settings.KeyRight2.ToString());
+            tbRight.Text = string.Join("+", keysRight).ToString();
+
+            if (!settings.AutoPort)
                 cbPorts.SelectedItem = settings.Port;
         }
 
@@ -353,6 +390,7 @@ namespace Lemon_resource_monitor
 
         private void serial_disconnected(int intent)
         {
+            autoPort = "";
             serial_portsChanged(serial.CheckAvailPortInfoMan());
         }
         #endregion
@@ -365,7 +403,7 @@ namespace Lemon_resource_monitor
                 while (true)
                 {
                     MainThread();
-                    Thread.Sleep(updateInterval * 1000); // Wait for x seconds
+                    Thread.Sleep(updateInterval); // Wait for x seconds
                 }
             });
 
@@ -379,7 +417,7 @@ namespace Lemon_resource_monitor
             TryConnect();
 
             if (serial.Connected)
-                SendPerformanceData();
+                SendData();
         }
 
         private void CheckConnection()
@@ -389,10 +427,10 @@ namespace Lemon_resource_monitor
                 List<string> availPorts = cbPorts.Items.Cast<string>().ToList();
                 foreach (string port in availPorts)
                 {
-                    if (port.Contains("CH340") || port.Contains("Arduino"))
+                    if (port.Contains("CH340"))// || port.Contains("Arduino"))
                     {
                         MethodInvoker mi1 = delegate ()
-                        {cbPorts.SelectedItem = port;};
+                        {cbPorts.SelectedItem = port; autoPort = port; };
                         Invoke(mi1);
                         
                         break;
@@ -403,45 +441,111 @@ namespace Lemon_resource_monitor
 
         private void TryConnect()
         {
-            if(!serial.Connected && !String.IsNullOrEmpty(settings.Port))
+            if (!settings.AutoPort && !serial.Connected && !String.IsNullOrEmpty(settings.Port))
                 serial.Connect(settings.Port);
+            if (settings.AutoPort && !serial.Connected && !String.IsNullOrEmpty(autoPort))
+            {
+                firstConnect = true;
+                serial.Connect(autoPort);
+                Thread.Sleep(2000);
+            }
         }
 
-        private void SendPerformanceData()
+        private void SendData()
         {
-            string packet = BuildPerformancePacket();
-            serial.Write(packet);
+            byte[] dataFirstPart;
+            if (firstConnect)
+            {
+                firstConnect = false;
+                FPSInfo.InitFPS();
+
+                dataFirstPart = BuildFirstPartPacket(true);
+                serial.WriteBytes(dataFirstPart, 0, dataFirstPart.Length);
+
+                Thread.Sleep(200);
+
+                byte[] dataSecondPart = BuildSecondPartPacket();
+                serial.WriteBytes(dataSecondPart, 0, dataSecondPart.Length);
+
+                return;
+            }
+
+            dataFirstPart = BuildFirstPartPacket();
+            serial.WriteBytes(dataFirstPart, 0, dataFirstPart.Length);
         }
 
-        private string TwoDecimalPlaces(float val)
+        int ClampInt(int val, int max)
         {
-            return string.Format("{0:F2}", val);
+            return Math.Max(Math.Min(val, max), 1);
         }
 
-        private string BuildPerformancePacket()
+        private byte[] BuildFirstPartPacket(bool fullBuffer = false)
         {
-            string res = "";
-            packetCounter++;
-            if (packetCounter == 12)
-                packetCounter = 1;
+            byte[] data = new byte[46];
 
+            FPSInfo.UpdateFPS();
             hwInfo.refresh();
 
-            if(packetCounter == 10)
-                res = String.Format("<{0},{1}>", 0, hwInfo.cpuName);
-            else if(packetCounter == 11)
-                res = String.Format("<{0},{1}>", 1, hwInfo.gpuName);
-            else
+            // Full buffer or not
+            data[2] = 0x57;
+            if (fullBuffer)
+                data[2] = 0xD9;
+
+            // Save fps values
+            int currFps = ClampInt((int)(FPSInfo.FPS+0.5), 2047);
+            int avgFps = ClampInt((int)(FPSInfo.avgFPS + 0.5), 2047);
+            int onePer = ClampInt((int)(FPSInfo.onePercentLow + 0.5), 99);
+            int combined = (currFps << 21) | (avgFps << 10) | onePer;
+
+            for (int i = 0; i < 4; i++)
             {
-                res = String.Format("<{0},{1},{2},{3},{4},{5},{6},{7},{8}>",
-                    2, hwInfo.totalMemory, hwInfo.availableMemory, 
-                    TwoDecimalPlaces(hwInfo.cpuTemp),
-                    TwoDecimalPlaces(hwInfo.cpuLoad),
-                    TwoDecimalPlaces(hwInfo.gpuTemp),
-                    TwoDecimalPlaces(hwInfo.gpuLoad),
-                    hwInfo.gpuTotalVram, hwInfo.gpuAvailVram);
+                data[3 + i] = (byte)((combined >> ((3 - i) * 8)) & 0xFF);
             }
-            return res;
+
+            // RAM percentage
+            data[7] = (byte)(((float)hwInfo.availableMemory / (float)hwInfo.totalMemory) * 100.0F + 0.5F);
+
+            //CPU temperature and load
+            data[8] = (byte)ClampInt((int)(hwInfo.cpuTemp + 0.5F), 255);
+            data[9] = (byte)(hwInfo.cpuLoad + 0.5F);
+
+            //GPU temperature and load
+            data[10] = (byte)ClampInt((int)(hwInfo.gpuTemp + 0.5F), 255);
+            data[11] = (byte)(hwInfo.gpuLoad + 0.5F);
+
+            // Mode (scrolling/switch), keyboard action and dividers
+            int mode = settings.Scrolling ? 1 : 2;
+            int kbdAct = leftAction ? 2 : (rightAction ? 3 : 1);
+            int div = settings.Dividers ? 1 : 2;
+
+            data[12] = (byte)(((mode & 3) << 6) | ((kbdAct & 15) << 2) | (div & 3));
+
+            // Default states for actions
+            leftAction = false;
+            rightAction = false;
+
+            // VRAM
+            data[13] = (byte)(((float)hwInfo.gpuAvailVram / (float)hwInfo.gpuTotalVram) * 100.0F + 0.5F);
+
+            // FPS bar graph
+            byte[] barGraph = FPSInfo.getFPSbarsS1();
+            for (int i = 0; i < 32; ++i)
+                data[14 + i] = barGraph[i];
+
+            return data;
+        }
+
+        private byte[] BuildSecondPartPacket()
+        {
+            byte[] data = new byte[64];
+
+            for (int i = 0; i < Math.Min(hwInfo.cpuName.Length, 31); ++i)
+                data[i] = (byte)hwInfo.cpuName[i];
+
+            for (int i = 0; i < Math.Min(hwInfo.gpuName.Length, 31); ++i)
+                data[i+32] = (byte)hwInfo.gpuName[i];
+
+            return data;
         }
         #endregion
 
@@ -484,6 +588,18 @@ namespace Lemon_resource_monitor
             if(serial.Connected)
                 serial.Disconnect();
         }
+
+        private void cbDividers_CheckedChanged(object sender, EventArgs e)
+        {
+            settings.Dividers = cbDividers.Checked;
+            settings.SaveSettings();
+        }
+
+        private void rbScrolling_CheckedChanged(object sender, EventArgs e)
+        {
+            settings.Scrolling = rbScrolling.Checked;
+            settings.SaveSettings();
+        }
         #endregion
 
         #region SystemTray
@@ -494,6 +610,7 @@ namespace Lemon_resource_monitor
 
         private void RestoreForm()
         {
+            this.ShowInTaskbar = true;
             this.Show();
             this.WindowState = FormWindowState.Normal;
             this.BringToFront();
@@ -523,10 +640,85 @@ namespace Lemon_resource_monitor
 
         private void ExitApp()
         {
-            hwInfo.close();
+            if(hwInfo != null) hwInfo.close();
+            if(fpsInfo != null) fpsInfo.StopFPS();
             notifyIcon1.Visible = false;
             notifyIcon1.Dispose();
             Environment.Exit(0);
+        }
+        #endregion
+
+        #region KeysHook
+        private void tbLeft_KeyDown(object sender, KeyEventArgs e)
+        {
+            List<string> keys = new List<string>();
+            string keyLeft1 = "";
+
+            if (e.Control) keyLeft1 = "Ctrl";
+            if (e.Alt) keyLeft1 = "Alt";
+            if (e.Shift) keyLeft1 = "Shift";
+            if (keyLeft1 != "")
+            {
+                keys.Add(keyLeft1);
+                settings.KeyLeft1 = keyLeft1;
+            }
+
+            keys.Add(e.KeyCode.ToString());
+            settings.KeyLeft2 = e.KeyCode;
+
+            keys.RemoveAll(s => s.Length > 1 && s!="Ctrl" && s != "Alt" && s!="Shift");
+            tbLeft.Text = string.Join("+", keys);
+
+            settings.SaveSettings();
+            e.SuppressKeyPress = true;
+        }
+
+        private void tbRight_KeyDown(object sender, KeyEventArgs e)
+        {
+            List<string> keys = new List<string>();
+            string keyRight1 = "";
+
+            if (e.Control) keyRight1 = "Ctrl";
+            if (e.Alt) keyRight1 = "Alt";
+            if (e.Shift) keyRight1 = "Shift";
+            if (keyRight1 != "")
+            {
+                keys.Add(keyRight1);
+                settings.KeyRight1 = keyRight1;
+            }
+
+            keys.Add(e.KeyCode.ToString());
+            settings.KeyRight2 = e.KeyCode;
+
+            keys.RemoveAll(s => s.Length > 1 && s != "Ctrl" && s != "Alt" && s != "Shift");
+            tbRight.Text = string.Join("+", keys);
+
+            settings.SaveSettings();
+            e.SuppressKeyPress = true;
+        }
+
+        private void GlobalHook_KeyDown(object sender, KeyEventArgs e)
+        {
+            bool keyLeft1 = false;
+            bool keyRight1 = false;
+
+            if (settings.KeyLeft1 == "Ctrl" && e.Control) keyLeft1 = true;
+            else if (settings.KeyLeft1 == "Alt" && e.Alt) keyLeft1 = true;
+            else if (settings.KeyLeft1 == "Shift" && e.Shift) keyLeft1 = true;
+
+            if (settings.KeyRight1 == "Ctrl" && e.Control) keyRight1 = true;
+            else if (settings.KeyRight1 == "Alt" && e.Alt) keyRight1 = true;
+            else if (settings.KeyRight1 == "Shift" && e.Shift) keyRight1 = true;
+
+            if (keyLeft1 && e.KeyCode == settings.KeyLeft2)
+            {
+                leftAction = true;
+            }
+
+            if (keyRight1 && e.KeyCode == settings.KeyRight2)
+            {
+                rightAction = true;
+            }
         }
         #endregion
     }

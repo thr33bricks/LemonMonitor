@@ -43,7 +43,7 @@ namespace Lemon_resource_monitor
                     changedArgs.SerialPorts, changedArgs.EventType);
         }
 
-        public void Connect(string comInfo, int baud = 9600, 
+        public void Connect(string comInfo, int baud = 115200, 
             Parity p = Parity.None, int dataBits = 8, 
             StopBits sb = StopBits.One, bool restartBoard = false)
         {
@@ -65,9 +65,24 @@ namespace Lemon_resource_monitor
         {
             if (Connected)
             {
-                port.Write(a);
+                try
+                {
+                    port.Write(a);
+                }
+                catch (Exception){}
             }
+        }
 
+        public void WriteBytes(byte[] a, int offset, int count)
+        {
+            if (Connected)
+            {
+                try
+                {
+                    port.Write(a, offset, count);
+                }
+                catch (Exception) { }
+            }
         }
 
         public void WriteLine(string a)

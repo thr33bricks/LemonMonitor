@@ -1,30 +1,42 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\",
+  "WorkspaceRootPath": "E:\\Programming\\Embedded\\Lemon_monitor\\Application\\repo\\LemonMonitor\\Application\\Lemon_resource_monitor\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|e:\\programming\\c#\\arduino_school\\lemonmonitor\\application\\lemon_resource_monitor\\lemon_resource_monitor\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|solutionrelative:lemon_resource_monitor\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\lemon_resource_monitor\\hardwareinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|solutionrelative:lemon_resource_monitor\\hardwareinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\lemon_resource_monitor\\frmabout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|solutionrelative:lemon_resource_monitor\\frmabout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\lemon_resource_monitor\\properties\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|e:\\programming\\embedded\\lemon_monitor\\application\\repo\\lemonmonitor\\application\\lemon_resource_monitor\\lemon_resource_monitor\\properties\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|solutionrelative:lemon_resource_monitor\\properties\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\lemon_resource_monitor\\serialcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|solutionrelative:lemon_resource_monitor\\serialcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|E:\\Programming\\Embedded\\Lemon_monitor\\Application\\repo\\LemonMonitor\\Application\\Lemon_resource_monitor\\lemon_resource_monitor\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|solutionrelative:lemon_resource_monitor\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\lemon_resource_monitor\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|solutionrelative:lemon_resource_monitor\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|e:\\programming\\embedded\\lemon_monitor\\application\\repo\\lemonmonitor\\application\\lemon_resource_monitor\\lemon_resource_monitor\\frmabout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|solutionrelative:lemon_resource_monitor\\frmabout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|e:\\programming\\embedded\\lemon_monitor\\application\\repo\\lemonmonitor\\application\\lemon_resource_monitor\\lemon_resource_monitor\\properties\\resources.resx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|solutionrelative:lemon_resource_monitor\\properties\\resources.resx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|e:\\programming\\embedded\\lemon_monitor\\application\\repo\\lemonmonitor\\application\\lemon_resource_monitor\\lemon_resource_monitor\\properties\\settings.settings||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|solutionrelative:lemon_resource_monitor\\properties\\settings.settings||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|e:\\programming\\embedded\\lemon_monitor\\application\\repo\\lemonmonitor\\application\\lemon_resource_monitor\\lemon_resource_monitor\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|solutionrelative:lemon_resource_monitor\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|e:\\programming\\embedded\\lemon_monitor\\application\\repo\\lemonmonitor\\application\\lemon_resource_monitor\\lemon_resource_monitor\\frmabout.resx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|solutionrelative:lemon_resource_monitor\\frmabout.resx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|e:\\programming\\embedded\\lemon_monitor\\application\\repo\\lemonmonitor\\application\\lemon_resource_monitor\\lemon_resource_monitor\\form1.resx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|solutionrelative:lemon_resource_monitor\\form1.resx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|E:\\Programming\\Embedded\\Lemon_monitor\\Application\\repo\\LemonMonitor\\Application\\Lemon_resource_monitor\\lemon_resource_monitor\\serialcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9C14547-9F19-47D0-B70F-923529720D7E}|Lemon_resource_monitor\\Lemon_resource_monitor.csproj|solutionrelative:lemon_resource_monitor\\serialcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,76 +46,121 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AssemblyInfo.cs",
-              "DocumentMoniker": "E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\Properties\\AssemblyInfo.cs",
-              "RelativeDocumentMoniker": "Lemon_resource_monitor\\Properties\\AssemblyInfo.cs",
-              "ToolTip": "E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\Properties\\AssemblyInfo.cs",
-              "RelativeToolTip": "Lemon_resource_monitor\\Properties\\AssemblyInfo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T21:18:26.38Z"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "frmAbout.cs [Design]",
-              "DocumentMoniker": "E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\frmAbout.cs",
+              "DocumentMoniker": "E:\\Programming\\Embedded\\Lemon_monitor\\Application\\repo\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\frmAbout.cs",
               "RelativeDocumentMoniker": "Lemon_resource_monitor\\frmAbout.cs",
-              "ToolTip": "F:\\Dancho\\Programming\\Lemon_monitor\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\frmAbout.cs [Design]",
+              "ToolTip": "E:\\Programming\\Embedded\\Lemon_monitor\\Application\\repo\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\frmAbout.cs [Design]",
+              "RelativeToolTip": "Lemon_resource_monitor\\frmAbout.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T16:21:56.667Z"
+              "WhenOpened": "2025-06-21T16:51:22.956Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "SerialController.cs",
-              "DocumentMoniker": "E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\SerialController.cs",
-              "RelativeDocumentMoniker": "Lemon_resource_monitor\\SerialController.cs",
-              "ToolTip": "E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\SerialController.cs",
-              "RelativeToolTip": "Lemon_resource_monitor\\SerialController.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAQwM0AAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T16:19:12.514Z"
+              "Title": "Settings.settings",
+              "DocumentMoniker": "E:\\Programming\\Embedded\\Lemon_monitor\\Application\\repo\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\Properties\\Settings.settings",
+              "RelativeDocumentMoniker": "Lemon_resource_monitor\\Properties\\Settings.settings",
+              "ToolTip": "E:\\Programming\\Embedded\\Lemon_monitor\\Application\\repo\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\Properties\\Settings.settings",
+              "RelativeToolTip": "Lemon_resource_monitor\\Properties\\Settings.settings",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002767|",
+              "WhenOpened": "2025-06-21T16:51:07.921Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "HardwareInfo.cs",
-              "DocumentMoniker": "E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\HardwareInfo.cs",
-              "RelativeDocumentMoniker": "Lemon_resource_monitor\\HardwareInfo.cs",
-              "ToolTip": "E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\HardwareInfo.cs",
-              "RelativeToolTip": "Lemon_resource_monitor\\HardwareInfo.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAqwLQAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T16:19:09.415Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\Form1.cs",
-              "RelativeDocumentMoniker": "Lemon_resource_monitor\\Form1.cs",
-              "ToolTip": "E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\Form1.cs",
-              "RelativeToolTip": "Lemon_resource_monitor\\Form1.cs",
-              "ViewState": "AgIAAHcAAAAAAAAAAAAgwPcAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T18:59:07.105Z",
+              "DocumentIndex": 3,
+              "Title": "Resources.resx",
+              "DocumentMoniker": "E:\\Programming\\Embedded\\Lemon_monitor\\Application\\repo\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\Properties\\Resources.resx",
+              "RelativeDocumentMoniker": "Lemon_resource_monitor\\Properties\\Resources.resx",
+              "ToolTip": "E:\\Programming\\Embedded\\Lemon_monitor\\Application\\repo\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\Properties\\Resources.resx",
+              "RelativeToolTip": "Lemon_resource_monitor\\Properties\\Resources.resx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-06-21T16:51:06.599Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "E:\\Programming\\C#\\Arduino_school\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\Form1.cs",
-              "RelativeDocumentMoniker": "Lemon_resource_monitor\\Form1.cs",
-              "ToolTip": "F:\\Dancho\\Programming\\Lemon_monitor\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\Form1.cs [Design]",
+              "Title": "packages.config",
+              "DocumentMoniker": "E:\\Programming\\Embedded\\Lemon_monitor\\Application\\repo\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\packages.config",
+              "RelativeDocumentMoniker": "Lemon_resource_monitor\\packages.config",
+              "ToolTip": "E:\\Programming\\Embedded\\Lemon_monitor\\Application\\repo\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\packages.config",
+              "RelativeToolTip": "Lemon_resource_monitor\\packages.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-06-21T16:51:03.629Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "frmAbout.resx",
+              "DocumentMoniker": "E:\\Programming\\Embedded\\Lemon_monitor\\Application\\repo\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\frmAbout.resx",
+              "RelativeDocumentMoniker": "Lemon_resource_monitor\\frmAbout.resx",
+              "ToolTip": "E:\\Programming\\Embedded\\Lemon_monitor\\Application\\repo\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\frmAbout.resx",
+              "RelativeToolTip": "Lemon_resource_monitor\\frmAbout.resx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAPQMAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-06-21T16:51:02.598Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Form1.resx",
+              "DocumentMoniker": "E:\\Programming\\Embedded\\Lemon_monitor\\Application\\repo\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\Form1.resx",
+              "RelativeDocumentMoniker": "Lemon_resource_monitor\\Form1.resx",
+              "ToolTip": "E:\\Programming\\Embedded\\Lemon_monitor\\Application\\repo\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\Form1.resx",
+              "RelativeToolTip": "Lemon_resource_monitor\\Form1.resx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-06-21T16:50:59.713Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AssemblyInfo.cs",
+              "DocumentMoniker": "E:\\Programming\\Embedded\\Lemon_monitor\\Application\\repo\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\Properties\\AssemblyInfo.cs",
+              "RelativeDocumentMoniker": "Lemon_resource_monitor\\Properties\\AssemblyInfo.cs",
+              "ToolTip": "E:\\Programming\\Embedded\\Lemon_monitor\\Application\\repo\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\Properties\\AssemblyInfo.cs",
+              "RelativeToolTip": "Lemon_resource_monitor\\Properties\\AssemblyInfo.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAAACAAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T20:02:38.167Z"
+              "WhenOpened": "2025-06-21T16:50:49.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "E:\\Programming\\Embedded\\Lemon_monitor\\Application\\repo\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\Form1.cs",
+              "RelativeDocumentMoniker": "Lemon_resource_monitor\\Form1.cs",
+              "ToolTip": "E:\\Programming\\Embedded\\Lemon_monitor\\Application\\repo\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\Form1.cs [Design]",
+              "RelativeToolTip": "Lemon_resource_monitor\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T20:02:38.167Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SerialController.cs",
+              "DocumentMoniker": "E:\\Programming\\Embedded\\Lemon_monitor\\Application\\repo\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\SerialController.cs",
+              "RelativeDocumentMoniker": "Lemon_resource_monitor\\SerialController.cs",
+              "ToolTip": "E:\\Programming\\Embedded\\Lemon_monitor\\Application\\repo\\LemonMonitor\\Application\\Lemon_resource_monitor\\Lemon_resource_monitor\\SerialController.cs",
+              "RelativeToolTip": "Lemon_resource_monitor\\SerialController.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAEwC0AAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-21T14:59:42.655Z"
             }
           ]
         }

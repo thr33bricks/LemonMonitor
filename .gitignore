@@ -1,0 +1,109 @@
+# Build results
+**/[Bb]in/
+**/[Oo]bj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Visual Studio specific folders
+.vscode/
+.vs/
+
+# Build and publish artifacts
+*.dll
+*.exe
+*.app
+*.pdb
+*.cache
+*.log
+*.mdb
+
+# NuGet packages
+*.nupkg
+# Ignore NuGet packages folder but keep config
+packages/
+!packages/repositories.config
+
+# DotCover
+.idea/
+*.dotCover
+
+# Rider
+*.sln.iml
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+
+# Windows Forms Designer files (auto-generated)
+*.Designer.cs
+
+# Others
+TestResults/
+*.dbmdl
+*.dbproj.schemaview
+*.publish.xml
+*.vspx
+*.vsp
+*.vspscc
+*.vssscc
+*.ncb
+*.sbr
+*.scc
+
+# Backup & Report files
+*.rpt
+*.orig
+
+# Windows image thumbnail cache
+Thumbs.db
+
+# JetBrains Rider and ReSharper
+.idea/
+*.sln.iml
+
+# Local history for Visual Studio
+.localhistory/
+
+# Publish artifacts
+*.publishsettings
+
+# User secrets
+secrets.json
+
+# Windows Store apps
+AppPackages/
+BundleArtifacts/
+
+# IIS Express
+/.vs/config/applicationhost.config
+
+# dotnet watch
+**/watcherconfig.json
+
+# Entity Framework migrations history
+Migrations/
+
+# Logs
+logs/
+*.log
+
+# node_modules (in case you're mixing in frontend)
+node_modules/
+
+# Compiled Razor views
+*.cshtml.cs
+*.cshtml.g.cs

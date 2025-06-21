@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.LinkLabel linkLabel1;
+            System.Windows.Forms.LinkLabel linkLabel2;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAbout));
             this.panelUpper = new System.Windows.Forms.Panel();
             this.formClose = new System.Windows.Forms.Panel();
@@ -41,6 +43,8 @@
             this.pnlMain = new System.Windows.Forms.Panel();
             this.lblCopyright = new System.Windows.Forms.Label();
             this.pbFacebook = new System.Windows.Forms.PictureBox();
+            linkLabel1 = new System.Windows.Forms.LinkLabel();
+            linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.panelUpper.SuspendLayout();
             this.formClose.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClose)).BeginInit();
@@ -48,6 +52,34 @@
             this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFacebook)).BeginInit();
             this.SuspendLayout();
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.ActiveLinkColor = System.Drawing.SystemColors.ActiveCaption;
+            linkLabel1.AutoSize = true;
+            linkLabel1.LinkColor = System.Drawing.SystemColors.ActiveCaption;
+            linkLabel1.Location = new System.Drawing.Point(16, 81);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new System.Drawing.Size(61, 13);
+            linkLabel1.TabIndex = 53;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "icons8.com";
+            linkLabel1.VisitedLinkColor = System.Drawing.SystemColors.ActiveCaption;
+            linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // linkLabel2
+            // 
+            linkLabel2.ActiveLinkColor = System.Drawing.SystemColors.ActiveCaption;
+            linkLabel2.AutoSize = true;
+            linkLabel2.LinkColor = System.Drawing.SystemColors.ActiveCaption;
+            linkLabel2.Location = new System.Drawing.Point(83, 81);
+            linkLabel2.Name = "linkLabel2";
+            linkLabel2.Size = new System.Drawing.Size(38, 13);
+            linkLabel2.TabIndex = 54;
+            linkLabel2.TabStop = true;
+            linkLabel2.Text = "credits";
+            linkLabel2.VisitedLinkColor = System.Drawing.SystemColors.ActiveCaption;
+            linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // panelUpper
             // 
@@ -146,9 +178,9 @@
             this.lblVersion.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVersion.Location = new System.Drawing.Point(13, 17);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(137, 16);
+            this.lblVersion.Size = new System.Drawing.Size(150, 16);
             this.lblVersion.TabIndex = 43;
-            this.lblVersion.Text = "Lemon monitor v1.5";
+            this.lblVersion.Text = "Lemon monitor v1.5.2";
             this.lblVersion.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblVersion_MouseMove);
             // 
             // lblName
@@ -165,6 +197,8 @@
             // pnlMain
             // 
             this.pnlMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(224)))), ((int)(((byte)(228)))));
+            this.pnlMain.Controls.Add(linkLabel2);
+            this.pnlMain.Controls.Add(linkLabel1);
             this.pnlMain.Controls.Add(this.lblCopyright);
             this.pnlMain.Controls.Add(this.pbFacebook);
             this.pnlMain.Controls.Add(this.btnOKIn);
