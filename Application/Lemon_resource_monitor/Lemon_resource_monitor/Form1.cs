@@ -640,14 +640,9 @@ namespace Lemon_resource_monitor
 
         private void ExitApp()
         {
-<<<<<<< HEAD
             if(hwInfo != null) hwInfo.close();
             if(fpsInfo != null) fpsInfo.StopFPS();
-=======
-            try{ hwInfo.close(); }
-            catch { }
-            
->>>>>>> d8563bd44be642dd54141e20fb97acab11edbeb8
+
             notifyIcon1.Visible = false;
             notifyIcon1.Dispose();
             Environment.Exit(0);

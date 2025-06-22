@@ -63,7 +63,7 @@ namespace Lemon_resource_monitor
         public static void InitFPS()
         {
             fpsVals = new List<float>();
-            fpsQueue = new FixedSizeConcurrentQueue<float>(3000);
+            fpsQueue = new FixedSizeConcurrentQueue<float>(1000);
             FPS = 0;
             avgFPS = 0.0F;
             onePercentLow = 0.0F;
