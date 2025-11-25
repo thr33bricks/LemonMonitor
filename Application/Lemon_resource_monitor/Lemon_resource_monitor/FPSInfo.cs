@@ -163,7 +163,7 @@ namespace Lemon_resource_monitor
                         fpsQueue.Enqueue(fps);
                     }, token);
                 }
-                catch (Exception ex){}
+                catch (Exception ex){ Console.WriteLine(ex.ToString()); }
 
                 FPS = 0;
             });

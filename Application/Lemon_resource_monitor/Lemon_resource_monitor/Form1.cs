@@ -292,6 +292,7 @@ namespace Lemon_resource_monitor
             rbScrolling.Checked = settings.Scrolling;
             rbSwitch.Checked = !settings.Scrolling;
             cbDividers.Checked = settings.Dividers;
+            cbSound.Checked = settings.Sound;
 
             List<string> keysLeft = new List<string>();
             if (settings.KeyLeft1 != "")
@@ -595,6 +596,12 @@ namespace Lemon_resource_monitor
             settings.SaveSettings();
         }
 
+        private void cbSound_CheckedChanged(object sender, EventArgs e)
+        {
+            settings.Sound = cbSound.Checked;
+            settings.SaveSettings();
+        }
+
         private void rbScrolling_CheckedChanged(object sender, EventArgs e)
         {
             settings.Scrolling = rbScrolling.Checked;
@@ -714,13 +721,20 @@ namespace Lemon_resource_monitor
             if (keyLeft1 && e.KeyCode == settings.KeyLeft2)
             {
                 leftAction = true;
+                if(cbSound.Checked && !rbScrolling.Checked)
+                    System.Threading.Tasks.Task.Run(() => Console.Beep(1000, 300));
             }
+
 
             if (keyRight1 && e.KeyCode == settings.KeyRight2)
             {
                 rightAction = true;
+                if (cbSound.Checked && !rbScrolling.Checked)
+                    System.Threading.Tasks.Task.Run(() => Console.Beep(800, 300));
             }
         }
         #endregion
+
+        
     }
 }

@@ -13,6 +13,7 @@ namespace Lemon_resource_monitor
 
         public bool Scrolling { get; set; } = true;
         public bool Dividers { get; set; } = false;
+        public bool Sound { get; set; } = false;
         public string KeyLeft1 { get; set; } = "Alt";
         public string KeyRight1 { get; set; } = "Alt";
         public Keys KeyLeft2 { get; set; } = Keys.Q;
@@ -43,6 +44,7 @@ namespace Lemon_resource_monitor
 
             this.Scrolling = other.Scrolling;
             this.Dividers = other.Dividers;
+            this.Sound = other.Sound;
             this.KeyLeft1 = other.KeyLeft1;
             this.KeyRight1 = other.KeyRight1;
             this.KeyLeft2 = other.KeyLeft2;
