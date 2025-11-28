@@ -41,6 +41,9 @@ namespace Lemon_resource_monitor
         [DllImport("user32.dll")]
         private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
 
+        static private Task fpsTask;
+        static private readonly object fpsLock = new object();
+
         static uint currentPid = 0;
         static CancellationTokenSource fpsCts;
         const int maxFpsVals = 64;
@@ -83,11 +86,11 @@ namespace Lemon_resource_monitor
             IntPtr hwnd = GetForegroundWindow();
             GetWindowThreadProcessId(hwnd, out uint processId);
 
-            if (currentPid != processId)
-            {
-                fpsCts?.Cancel();
-                fpsCts?.Dispose();
+            if (currentPid != processId){
+                //fpsCts?.Cancel();
+                //fpsCts?.Dispose();
 
+                currentPid = processId;
                 StartFPS(processId);
             }
 
@@ -124,7 +127,7 @@ namespace Lemon_resource_monitor
             byte[] fpsBars = new byte[32];
             for (int i = 0; i < 32; i++)
                 fpsBars[i] = 0x11;
-            float maxFPS = fpsVals.Max();
+            float maxFPS = fpsVals.DefaultIfEmpty(0).Max();
 
             if (maxFPS < 2)
                 return fpsBars;
@@ -148,25 +151,41 @@ namespace Lemon_resource_monitor
 
         static private void StartFPS(uint pid)
         {
-            currentPid = pid;
-            fpsCts = new CancellationTokenSource();
-            var token = fpsCts.Token;
-
-            Task.Run(async () =>
+            lock (fpsLock)
             {
-                try
-                {
-                    await FpsInspector.StartForeverAsync(new FpsRequest(pid) { PeriodMillisecond = 0 }, result =>
-                    {
-                        float fps = (float)result.Fps;
-                        FPS = fps;
-                        fpsQueue.Enqueue(fps);
-                    }, token);
-                }
-                catch (Exception ex){ Console.WriteLine(ex.ToString()); }
+                currentPid = pid;
 
-                FPS = 0;
-            });
+                // Cancel previous instance
+                fpsCts?.Cancel();
+                fpsCts?.Dispose();
+                fpsCts = new CancellationTokenSource();
+                var token = fpsCts.Token;
+
+                fpsTask = Task.Run(async () =>
+                {
+                    try
+                    {
+                        await FpsInspector.StartForeverAsync(new FpsRequest(pid) { PeriodMillisecond = 10 }, result =>
+                        {
+                            float fps = (float)result.Fps;
+                            FPS = fps;
+                            fpsQueue.Enqueue(fps);
+                        }, token);
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        // normal during cancellation
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                    finally
+                    {
+                        FPS = 0;
+                    }
+                });
+            }
         }
     }
 }

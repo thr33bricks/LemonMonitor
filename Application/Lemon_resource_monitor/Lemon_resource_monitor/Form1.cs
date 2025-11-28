@@ -11,8 +11,8 @@ using hardware_info_test;
 using Microsoft.Win32;
 using System.Diagnostics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using Gma.System.MouseKeyHook;
 using System.Collections;
+using Lemon_resource_monitor.Properties;
 
 namespace Lemon_resource_monitor
 {
@@ -31,7 +31,25 @@ namespace Lemon_resource_monitor
         FPSInfo fpsInfo;
         Mutex mutex;
 
-        IKeyboardMouseEvents globalHook;
+        #region HotKeysInit
+        private const int WM_HOTKEY = 0x0312;
+        private const int HOTKEY_ID_LEFT = 1;
+        private const int HOTKEY_ID_RIGHT = 2;
+
+        // Modifier constants
+        Dictionary<string, uint> modConst = new Dictionary<string, uint>()
+        {
+            { "Alt", 0x0001 },
+            { "Ctrl", 0x0002 },
+            { "Shift", 0x0004 }
+        };
+
+        [DllImport("user32.dll")]
+        private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
+
+        [DllImport("user32.dll")]
+        private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+        #endregion
 
         #region Movable
         //====================================================================================
@@ -133,19 +151,19 @@ namespace Lemon_resource_monitor
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            globalHook = Hook.GlobalEvents();
-            globalHook.KeyDown += GlobalHook_KeyDown;
-
             serial_portsChanged(serial.CheckAvailPortInfoMan());
             LoadSettingsForm();
             CheckAutoStart();
             StartMainThread();
+
+            RegisterHotKey(this.Handle, HOTKEY_ID_LEFT, modConst[settings.KeyLeft1], (uint)settings.KeyLeft2);
+            RegisterHotKey(this.Handle, HOTKEY_ID_RIGHT, modConst[settings.KeyRight1], (uint)settings.KeyRight2);
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            globalHook.KeyDown -= GlobalHook_KeyDown;
-            globalHook.Dispose();
+            UnregisterHotKey(this.Handle, HOTKEY_ID_LEFT);
+            UnregisterHotKey(this.Handle, HOTKEY_ID_RIGHT);
         }
         #endregion
 
@@ -504,7 +522,7 @@ namespace Lemon_resource_monitor
             }
 
             // RAM percentage
-            data[7] = (byte)(((float)hwInfo.availableMemory / (float)hwInfo.totalMemory) * 100.0F + 0.5F);
+            data[7] = (byte)((((float)hwInfo.totalMemory - (float)hwInfo.availableMemory) / (float)hwInfo.totalMemory) * 100.0F + 0.5F);
 
             //CPU temperature and load
             data[8] = (byte)ClampInt((int)(hwInfo.cpuTemp + 0.5F), 255);
@@ -526,7 +544,7 @@ namespace Lemon_resource_monitor
             rightAction = false;
 
             // VRAM
-            data[13] = (byte)(((float)hwInfo.gpuAvailVram / (float)hwInfo.gpuTotalVram) * 100.0F + 0.5F);
+            data[13] = (byte)((((float)hwInfo.gpuTotalVram - (float)hwInfo.gpuAvailVram) / (float)hwInfo.gpuTotalVram) * 100.0F + 0.5F);
 
             // FPS bar graph
             byte[] barGraph = FPSInfo.getFPSbarsS1();
@@ -656,7 +674,7 @@ namespace Lemon_resource_monitor
         }
         #endregion
 
-        #region KeysHook
+        #region HotkeysLogic
         private void tbLeft_KeyDown(object sender, KeyEventArgs e)
         {
             List<string> keys = new List<string>();
@@ -679,6 +697,9 @@ namespace Lemon_resource_monitor
 
             settings.SaveSettings();
             e.SuppressKeyPress = true;
+
+            UnregisterHotKey(this.Handle, HOTKEY_ID_LEFT);
+            RegisterHotKey(this.Handle, HOTKEY_ID_LEFT, modConst[settings.KeyLeft1], (uint)settings.KeyLeft2);
         }
 
         private void tbRight_KeyDown(object sender, KeyEventArgs e)
@@ -703,38 +724,28 @@ namespace Lemon_resource_monitor
 
             settings.SaveSettings();
             e.SuppressKeyPress = true;
+
+            UnregisterHotKey(this.Handle, HOTKEY_ID_RIGHT);
+            RegisterHotKey(this.Handle, HOTKEY_ID_RIGHT, modConst[settings.KeyRight1], (uint)settings.KeyRight2);
         }
 
-        private void GlobalHook_KeyDown(object sender, KeyEventArgs e)
+        protected override void WndProc(ref Message m)
         {
-            bool keyLeft1 = false;
-            bool keyRight1 = false;
-
-            if (settings.KeyLeft1 == "Ctrl" && e.Control) keyLeft1 = true;
-            else if (settings.KeyLeft1 == "Alt" && e.Alt) keyLeft1 = true;
-            else if (settings.KeyLeft1 == "Shift" && e.Shift) keyLeft1 = true;
-
-            if (settings.KeyRight1 == "Ctrl" && e.Control) keyRight1 = true;
-            else if (settings.KeyRight1 == "Alt" && e.Alt) keyRight1 = true;
-            else if (settings.KeyRight1 == "Shift" && e.Shift) keyRight1 = true;
-
-            if (keyLeft1 && e.KeyCode == settings.KeyLeft2)
-            {
-                leftAction = true;
-                if(cbSound.Checked && !rbScrolling.Checked)
-                    System.Threading.Tasks.Task.Run(() => Console.Beep(1000, 300));
+            if (m.Msg == WM_HOTKEY){
+                int id = m.WParam.ToInt32();
+                if (id == HOTKEY_ID_LEFT && !leftAction){
+                    leftAction = true;
+                    if (cbSound.Checked && !rbScrolling.Checked)
+                        System.Threading.Tasks.Task.Run(() => Console.Beep(1000, 300));
+                }
+                else if (id == HOTKEY_ID_RIGHT && !rightAction){
+                    rightAction = true;
+                    if (cbSound.Checked && !rbScrolling.Checked)
+                        System.Threading.Tasks.Task.Run(() => Console.Beep(800, 300));
+                }
             }
-
-
-            if (keyRight1 && e.KeyCode == settings.KeyRight2)
-            {
-                rightAction = true;
-                if (cbSound.Checked && !rbScrolling.Checked)
-                    System.Threading.Tasks.Task.Run(() => Console.Beep(800, 300));
-            }
+            base.WndProc(ref m);
         }
         #endregion
-
-        
     }
 }
