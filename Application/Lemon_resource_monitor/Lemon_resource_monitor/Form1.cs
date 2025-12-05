@@ -13,13 +13,16 @@ using System.Diagnostics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Collections;
 using Lemon_resource_monitor.Properties;
+using System.Reflection.Metadata;
 
 namespace Lemon_resource_monitor
 {
     public partial class Form1 : Form
     {
         int updateInterval = 200; // in ms
-        string settingsFilePath = "settings.json"; // realative to the .exe file
+        string settingsFilePath = System.IO.Path.GetDirectoryName(
+            System.Reflection.Assembly.GetExecutingAssembly().Location) + 
+            "\\settings.json"; // realative to the .exe file
         string appName = "LemonMonitor";
         string autoPort = "";
         bool leftAction = false;
@@ -156,8 +159,8 @@ namespace Lemon_resource_monitor
             CheckAutoStart();
             StartMainThread();
 
-            RegisterHotKey(this.Handle, HOTKEY_ID_LEFT, modConst[settings.KeyLeft1], (uint)settings.KeyLeft2);
-            RegisterHotKey(this.Handle, HOTKEY_ID_RIGHT, modConst[settings.KeyRight1], (uint)settings.KeyRight2);
+            RegisterHotKeyWithRetry(this.Handle, HOTKEY_ID_LEFT, modConst[settings.KeyLeft1], (uint)settings.KeyLeft2);
+            RegisterHotKeyWithRetry(this.Handle, HOTKEY_ID_RIGHT, modConst[settings.KeyRight1], (uint)settings.KeyRight2);
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -745,6 +748,18 @@ namespace Lemon_resource_monitor
                 }
             }
             base.WndProc(ref m);
+        }
+
+        bool RegisterHotKeyWithRetry(IntPtr handle, int id, uint modifiers, uint key)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                if (RegisterHotKey(handle, id, modifiers, key))
+                    return true;
+
+                Thread.Sleep(500);
+            }
+            return false;
         }
         #endregion
     }
