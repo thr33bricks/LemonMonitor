@@ -761,6 +761,22 @@ namespace Lemon_resource_monitor
             }
             return false;
         }
+
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+
+            RegisterHotKeyWithRetry(this.Handle, HOTKEY_ID_LEFT, modConst[settings.KeyLeft1], (uint)settings.KeyLeft2);
+            RegisterHotKeyWithRetry(this.Handle, HOTKEY_ID_RIGHT, modConst[settings.KeyRight1], (uint)settings.KeyRight2);
+        }
+
+        protected override void OnHandleDestroyed(EventArgs e)
+        {
+            UnregisterHotKey(this.Handle, HOTKEY_ID_LEFT);
+            UnregisterHotKey(this.Handle, HOTKEY_ID_RIGHT);
+
+            base.OnHandleDestroyed(e);
+        }
         #endregion
     }
 }
