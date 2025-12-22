@@ -134,22 +134,24 @@ namespace Lemon_resource_monitor
             InitializeComponent();
             CloseIfAnotherInstanceRunning();
 
+            Opacity = 0;
+            notifyIcon1.Visible = false;
+
             settings = new Settings(settingsFilePath);
             serial = new SerialController();
             hwInfo = new HardwareInfo();
             fpsInfo = new FPSInfo();
 
-            // Show form if no device is selected
-            if (!String.IsNullOrEmpty(settings.Port))
-            {
-                this.ShowInTaskbar = false;
-                HideForm();
-            }
-            notifyIcon1.Visible = true;
-
+            SystemEvents.PowerModeChanged += OnPowerModeChanged;
             serial.serialConnected += serial_connected;
             serial.serialDisconnected += serial_disconnected;
             serial.serialChn += serial_portsChanged;
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            notifyIcon1.Visible = true;
+            StartMainThread();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -157,10 +159,18 @@ namespace Lemon_resource_monitor
             serial_portsChanged(serial.CheckAvailPortInfoMan());
             LoadSettingsForm();
             CheckAutoStart();
-            StartMainThread();
 
             RegisterHotKeyWithRetry(this.Handle, HOTKEY_ID_LEFT, modConst[settings.KeyLeft1], (uint)settings.KeyLeft2);
             RegisterHotKeyWithRetry(this.Handle, HOTKEY_ID_RIGHT, modConst[settings.KeyRight1], (uint)settings.KeyRight2);
+
+            // Show form if no device is selected
+            if (!String.IsNullOrEmpty(settings.Port))
+            {
+                this.ShowInTaskbar = false;
+                HideForm();
+            }
+            else if (!settings.Background)
+                Opacity = 1;
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -452,8 +462,13 @@ namespace Lemon_resource_monitor
                     if (port.Contains("CH340"))// || port.Contains("Arduino"))
                     {
                         MethodInvoker mi1 = delegate ()
-                        {cbPorts.SelectedItem = port; autoPort = port; };
-                        Invoke(mi1);
+                        { cbPorts.SelectedItem = port; autoPort = port; };
+                        try
+                        {
+                            
+                            Invoke(mi1);
+                        }
+                        catch (Exception){}
                         
                         break;
                     }
@@ -631,6 +646,15 @@ namespace Lemon_resource_monitor
         #endregion
 
         #region SystemTray
+
+        private void OnPowerModeChanged(object sender, PowerModeChangedEventArgs e)
+        {
+            notifyIcon1.Visible = true;
+            if (e.Mode == PowerModes.Resume && settings.Background)
+            {
+                HideForm();
+            }
+        }
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ExitApp();
@@ -638,6 +662,7 @@ namespace Lemon_resource_monitor
 
         private void RestoreForm()
         {
+            Opacity = 1;
             this.ShowInTaskbar = true;
             this.Show();
             this.WindowState = FormWindowState.Normal;
@@ -662,17 +687,21 @@ namespace Lemon_resource_monitor
 
         private void HideForm()
         {
+            Opacity = 0;
             this.WindowState = FormWindowState.Minimized;
             this.Hide();
         }
 
         private void ExitApp()
         {
+            Opacity = 0;
             if(hwInfo != null) hwInfo.close();
             if(fpsInfo != null) fpsInfo.StopFPS();
 
             notifyIcon1.Visible = false;
             notifyIcon1.Dispose();
+
+            SystemEvents.PowerModeChanged -= OnPowerModeChanged;
             Environment.Exit(0);
         }
         #endregion
