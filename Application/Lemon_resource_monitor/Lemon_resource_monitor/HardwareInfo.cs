@@ -171,7 +171,7 @@ namespace hardware_info_test
                         {
                             this.gpuLoad = (float)sensorValue(s);
                         }
-                        else if (s.SensorType == SensorType.Load &&
+                        else if (this.gpuLoad == 0 && s.SensorType == SensorType.Load &&
                             s.Name == "D3D 3D")
                         {
                             this.gpuLoad = (float)sensorValue(s);
