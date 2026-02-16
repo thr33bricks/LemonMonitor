@@ -35,8 +35,8 @@ The stats remain visible - but off your main screen! Perfect for keeping an eye 
 
 ## 🔗 Related Repositories and Website
 
-The complete Lemon Monitor ecosystem includes a Windows desktop application and a local server:
+The complete Lemon Monitor ecosystem includes a local server and firmware:
 
 * **Official Website:** [lemon.yourdan.uk](http://lemon.yourdan.uk)
-* **Windows Application:** [LemonMonitor App](https://github.com/thr33bricks/LemonMonitor)
 * **Hardware Monitor Web Server:** [LemonServer](https://github.com/thr33bricks/LemonServer/)
+* **LemonMonitor Firmware:** [LemonMonitor Firmware](https://github.com/thr33bricks/LemonMonitor-firmware-community)
