@@ -32,3 +32,11 @@ The stats remain visible - but off your main screen! Perfect for keeping an eye 
 - .NET Framework: Version 4.8 or higher
 
 ⚠️ The application should be run as **Administrator**
+
+## 🔗 Related Repositories and Website
+
+The complete Lemon Monitor ecosystem includes a Windows desktop application and a local server:
+
+* **Official Website:** [lemon.yourdan.uk](http://lemon.yourdan.uk)
+* **Windows Application:** [LemonMonitor App](https://github.com/thr33bricks/LemonMonitor)
+* **Hardware Monitor Web Server:** [LemonServer](https://github.com/thr33bricks/LemonServer/)
